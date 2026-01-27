@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+venv/
+.env/
+data/output_models/
+*.gif
+*.png
+*.stl
+.vscode/
+.idea/
+cloud_config.json

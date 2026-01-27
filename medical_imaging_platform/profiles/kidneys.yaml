@@ -1,0 +1,51 @@
+# Kidneys Organ Profile
+# Segmentation parameters for renal CT analysis
+
+organ: kidneys
+description: "Kidneys segmentation from abdominal CT scans"
+category: "abdominal"
+modality: ["CT"]
+
+tissues:
+  renal_cortex:
+    name: "Renal Cortex"
+    hu_min: 40
+    hu_max: 80
+    color: [205, 92, 92]  # RGB - indian red
+    description: "Outer kidney cortex"
+    
+  renal_medulla:
+    name: "Renal Medulla"
+    hu_min: 30
+    hu_max: 50
+    color: [255, 140, 0]  # RGB - dark orange
+    description: "Inner kidney medulla (pyramids)"
+
+preprocessing:
+  target_spacing_mm: 1.0
+  gaussian_sigma: 0.7
+  normalize: true
+
+morphology:
+  closing_radius: 2
+  dilation_iterations: 1
+  erosion_iterations: 0
+  fill_holes: true
+  keep_largest_component: true
+
+mesh:
+  algorithm: "marching_cubes"
+  laplacian_smoothing_iterations: 14
+  laplacian_smoothing_lambda: 0.5
+  decimation_target: 0.8
+  remove_isolated_vertices: true
+
+export:
+  formats: ["stl", "ply"]
+  stl_binary: true
+  include_colors: true
+
+quality:
+  min_voxels: 200
+  max_holes: 3
+  manifold_check: true
