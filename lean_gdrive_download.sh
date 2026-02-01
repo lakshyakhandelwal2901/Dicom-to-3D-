@@ -3,7 +3,11 @@
 # NO local storage - streams directly to your 2TB Google Drive
 # Uses /tmp (8GB) for temporary streaming only
 
-cd /workspaces/Dicom-to-3D-
+# Get project root (adaptive - works from any directory)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$SCRIPT_DIR"
+
+cd "$PROJECT_ROOT"
 
 clear
 echo ""
@@ -14,19 +18,21 @@ echo "║                                                                    ║
 echo "║   • Downloads from AWS → /tmp (temporary)                         ║"
 echo "║   • Uploads to Google Drive immediately                           ║"
 echo "║   • Deletes /tmp after each upload                                ║"
-echo "║   • Workspace stays clean (2.1 GB free)                           ║"
+echo "║   • Workspace stays clean                                         ║"
 echo "║                                                                    ║"
 echo "╚════════════════════════════════════════════════════════════════════╝"
 echo ""
+echo "📍 Project Root: $PROJECT_ROOT"
+echo ""
 
 # Verify authenticated
-if [ ! -f "token.pickle" ]; then
+if [ ! -f "$PROJECT_ROOT/token.pickle" ]; then
     echo "❌ Not authenticated!"
+    echo "Run: python setup_google_drive.py authenticate"
     exit 1
 fi
 
-echo "✅ Google Drive authenticated (1,954 GB available)"
-echo "📊 Local workspace: 2.1 GB free (staying clean)"
+echo "✅ Google Drive authenticated"
 echo ""
 
 # Datasets to download (prioritized)

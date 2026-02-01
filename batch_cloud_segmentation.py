@@ -15,6 +15,9 @@ import shutil
 from pathlib import Path
 import argparse
 from datetime import datetime
+from path_utils import get_project_root, ensure_in_project, run_gdrive_script
+
+ensure_in_project()
 
 def run_cmd(cmd, check=True):
     """Run shell command"""

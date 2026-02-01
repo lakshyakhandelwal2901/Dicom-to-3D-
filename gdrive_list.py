@@ -8,15 +8,17 @@ import sys
 import pickle
 from pathlib import Path
 from datetime import datetime
+from path_utils import get_token_path, ensure_in_project
 
 def list_files(folder_name=None, max_results=50):
     """List files in Google Drive"""
+    ensure_in_project()
     try:
         from google.oauth2.credentials import Credentials
         from googleapiclient.discovery import build
         
-        # Load credentials
-        token_path = Path('token.pickle')
+        # Load credentials (adaptive)
+        token_path = get_token_path()
         if not token_path.exists():
             print("❌ Not authenticated!")
             print("Run: python setup_google_drive.py authenticate")

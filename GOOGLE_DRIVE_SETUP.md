@@ -39,11 +39,25 @@ Annual Savings: $60 + 8x more storage!
 
 ## 🔧 SETUP (15 Minutes)
 
+**NEW: Universal Setup (works from any location)**
+```bash
+bash setup_project.sh
+```
+
+This automatically handles all paths and dependencies.
+
+---
+
 ### Step 1: Install Dependencies (2 minutes)
 
 ```bash
 cd /workspaces/Dicom-to-3D-
 python setup_google_drive.py install
+```
+
+Or from anywhere (adaptive paths):
+```bash
+python3 /path/to/setup_google_drive.py install
 ```
 
 Installs:

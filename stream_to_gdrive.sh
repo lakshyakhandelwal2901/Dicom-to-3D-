@@ -2,7 +2,14 @@
 # Download Medical Decathlon datasets directly to Google Drive
 # No local disk space required - streams to cloud
 
+# Get project root (adaptive - works from any directory)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$SCRIPT_DIR"
+
+cd "$PROJECT_ROOT"
+
 echo "🚀 Starting Medical Decathlon → Google Drive Download Stream"
+echo "📍 Project Root: $PROJECT_ROOT"
 echo ""
 echo "This will:"
 echo "  1. Download each dataset from AWS"
@@ -12,7 +19,7 @@ echo "  4. Clean up temporary files"
 echo ""
 
 # Make sure Google Drive is authenticated
-if [ ! -f "token.pickle" ]; then
+if [ ! -f "$PROJECT_ROOT/token.pickle" ]; then
     echo "❌ Not authenticated with Google Drive!"
     echo "Run: python setup_google_drive.py authenticate"
     exit 1

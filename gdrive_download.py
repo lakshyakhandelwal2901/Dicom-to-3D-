@@ -7,17 +7,19 @@ import os
 import sys
 import pickle
 from pathlib import Path
+from path_utils import get_token_path, ensure_in_project
 
 def download_file(file_id_or_name, output_path=None):
     """Download file from Google Drive by ID or name"""
+    ensure_in_project()
     try:
         from google.oauth2.credentials import Credentials
         from googleapiclient.discovery import build
         from googleapiclient.http import MediaIoBaseDownload
         import io
         
-        # Load credentials
-        token_path = Path('token.pickle')
+        # Load credentials (adaptive path)
+        token_path = get_token_path()
         if not token_path.exists():
             print("❌ Not authenticated!")
             print("Run: python setup_google_drive.py authenticate")

@@ -9,22 +9,24 @@ import sys
 import pickle
 from pathlib import Path
 from datetime import datetime
+from path_utils import get_token_path, get_project_root, ensure_in_project
 
 def upload_file(file_path, folder_name="Dicom-3D-Medical-Imaging"):
     """Upload file to Google Drive"""
+    ensure_in_project()
     try:
         from google.oauth2.credentials import Credentials
         from googleapiclient.discovery import build
         from googleapiclient.http import MediaFileUpload
         
-        file_path = Path(file_path)
+        file_path = Path(file_path).resolve()
         
         if not file_path.exists():
             print(f"❌ File not found: {file_path}")
             return False
         
-        # Load credentials
-        token_path = Path('token.pickle')
+        # Load credentials (adaptive path)
+        token_path = get_token_path()
         if not token_path.exists():
             print("❌ Not authenticated!")
             print("Run: python setup_google_drive.py authenticate")
