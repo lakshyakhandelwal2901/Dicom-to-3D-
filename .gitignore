@@ -9,3 +9,5 @@ data/output_models/
 .vscode/
 .idea/
 cloud_config.json
+credentials.json
+token.pickle
