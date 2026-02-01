@@ -25,9 +25,9 @@ def run_cmd(cmd, check=True):
     return result
 
 def download_from_cloud(cloud_path, local_path):
-    """Download DICOM from cloud to local /tmp"""
-    print(f"\n📥 Downloading from cloud: {cloud_path}")
-    cmd = f"./do_spaces.sh download {cloud_path} {local_path}"
+    """Download DICOM from Google Drive to local /tmp"""
+    print(f"\n📥 Downloading from Google Drive: {cloud_path}")
+    cmd = f"python3 gdrive_download.py '{cloud_path}' {local_path}"
     result = run_cmd(cmd)
     
     # Count files
@@ -67,11 +67,11 @@ def segment_organ(dicom_path, organ, output_base):
         return False, None
 
 def upload_to_cloud(local_path, remote_base, dataset_name):
-    """Upload results to cloud"""
+    """Upload results to Google Drive"""
     remote_path = f"{remote_base}/{dataset_name}"
-    print(f"\n📤 Uploading results: {remote_path}")
+    print(f"\n📤 Uploading results to Google Drive: {remote_path}")
     
-    cmd = f"./do_spaces.sh upload {local_path} {remote_path}"
+    cmd = f"python3 gdrive_upload.py {local_path} results/{remote_base}"
     result = run_cmd(cmd, check=False)
     
     if result.returncode == 0:
@@ -206,7 +206,7 @@ def main():
         print("✅ BATCH SEGMENTATION COMPLETE")
         print("="*70)
         print(f"\nView results in cloud:")
-        print(f"  ./do_spaces.sh list {cloud_output}")
+        print(f"  python3 gdrive_list.py results")
         print()
         
     except Exception as e:

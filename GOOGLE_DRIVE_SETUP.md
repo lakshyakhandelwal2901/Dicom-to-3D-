@@ -33,7 +33,7 @@ Annual Savings: $60 + 8x more storage!
 | **Upload Speed** | Fast | Fast |
 | **Download Speed** | Fast | Fast |
 
-**Recommendation:** Use Google Drive as primary, keep DigitalOcean as backup.
+**Recommendation:** Use Google Drive as primary storage (replaces DigitalOcean completely - FREE).
 
 ---
 
@@ -405,7 +405,7 @@ python gdrive_upload.py output_20260128.tar.gz backups/
 
 **Recommended Strategy:**
 1. **Primary storage:** Google Drive (2TB, free)
-2. **Processing cache:** DigitalOcean Spaces (fast S3 access)
+2. **Processing cache:** /tmp auto-cleanup (fast local access)
 3. **Workflow:**
    - Store datasets in Google Drive
    - Download to local for processing

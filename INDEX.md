@@ -79,7 +79,7 @@ All systems configured, tested, and verified. Professional quality upgrade is pr
 
 # MANUAL PYTHON EXECUTION
 .venv/bin/python batch_cloud_segmentation.py \
-  --cloud-input "s3://my-medical-imaging/datasets/tcia/lung_TCGA-17-Z054" \
+  --cloud-input "datasets/medical_decathlon/Task06_Lung" \
   --organs "full_anatomy"
 ```
 
@@ -124,8 +124,8 @@ cat phase1.log | tail -20   # See last 20 lines
 ```bash
 cd /workspaces/Dicom-to-3D-
 .venv/bin/python batch_cloud_segmentation.py \
-  --cloud-input "s3://my-medical-imaging/datasets/tcia/lung_TCGA-17-Z054" \
-  --cloud-output "s3://my-medical-imaging/outputs/" \
+  --cloud-input "datasets/medical_decathlon/Task06_Lung" \
+  --cloud-output "results/" \
   --organs "full_anatomy"
 ```
 - Direct Python call without shell wrapper

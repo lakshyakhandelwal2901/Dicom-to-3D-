@@ -187,17 +187,17 @@ outputs/lung_TCGA-17-Z054_full_anatomy/
 
 1. **Download and View:**
 ```bash
-./do_spaces.sh download s3://my-medical-imaging/outputs/lung_TCGA-17-Z054_full_anatomy/ output/
+./gdrive_spaces.sh download "results/full_anatomy_models" output/
 blender output/full_anatomy_combined_colored.ply
 ```
 
 2. **Generate More Full Anatomy Models:**
 ```bash
-# Process all chest CTs
-for dataset in lung_TCGA-17-Z054 lidc_patient_01 lidc_patient_02; do
+# Process all chest CTs from Medical Decathlon
+for task in Task06_Lung Task10_Colon; do
   python batch_cloud_segmentation.py \
-    --cloud-input s3://my-medical-imaging/datasets/tcia/$dataset \
-    --cloud-output s3://my-medical-imaging/outputs/ \
+    --cloud-input "datasets/medical_decathlon/$task" \
+    --cloud-output "results/" \
     --organs full_anatomy
 done
 ```
